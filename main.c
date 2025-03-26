@@ -33,6 +33,16 @@ int main()
 
 	SDL_Event event;
 	int gameover = 0, key;
+	int count = win_hei*win_wid;
+	SDL_FPoint points[count];
+
+	for (int y = 0, pIndex = 0; y < win_hei; y++) 
+		for (int x = 0; x < win_wid; x++) { 
+			points[pIndex].x = x;
+			points[pIndex++].y = y;
+		}
+
+
 	while (!gameover) {
 		if (SDL_PollEvent(&event)) {
 			switch(event.type) {
@@ -52,17 +62,13 @@ int main()
 					break;
 			}
 		}
-		// draw bg
+
 		SDL_SetRenderDrawColor(ren,
 			rand() % 0xFF,
 			rand() % 0xFF,
 			rand() % 0xFF, 0xFF);
 
-		for (int y = 0; y < win_hei; y++) {
-			for (int x = 0; x < win_wid; x++) 
-				SDL_RenderPoint(ren, x, y);
-		}
-
+		SDL_RenderPoints(ren, points, count);
 		SDL_RenderPresent(ren);
 	}
 
