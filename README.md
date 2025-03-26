@@ -1,1 +1,1 @@
-# sdl_course
+# `SDL_Course`
