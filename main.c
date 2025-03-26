@@ -68,7 +68,10 @@ int main()
 			rand() % 0xFF,
 			rand() % 0xFF, 0xFF);
 
-		SDL_RenderPoints(ren, points, count);
+		if (rand() % 2)
+			SDL_RenderPoints(ren, points, count);
+		else	SDL_RenderClear(ren);
+
 		SDL_RenderPresent(ren);
 	}
 
